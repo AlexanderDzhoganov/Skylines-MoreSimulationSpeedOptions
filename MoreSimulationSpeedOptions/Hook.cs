@@ -95,6 +95,11 @@ namespace MoreSimulationSpeedOptions
             speedButton.transformPosition = speedBar.transformPosition;
             speedButton.transform.position = speedBar.transform.position;
 
+            if (speed == 3)
+            {
+                Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 4);
+            }
+
             if (speed > 3)
             {
                 speedButton.textColor = red;
