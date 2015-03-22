@@ -10,6 +10,7 @@ namespace MoreSimulationSpeedOptions
         private FieldInfo simulationSpeedField;
 
         private UIButton speedButton;
+        private UIMultiStateButton speedBar;
 
         private Color32 white = new Color32(255, 255, 255, 255);
         private Color32 red = new Color32(255, 0, 0, 255);
@@ -18,7 +19,6 @@ namespace MoreSimulationSpeedOptions
         {
             simulationSpeedField = Util.FindField(SimulationManager.instance, "m_simulationSpeed");
                 
-            UIMultiStateButton speedBar = null;
             var multiStateButtons = GameObject.FindObjectsOfType<UIMultiStateButton>();
             foreach (var button in multiStateButtons)
             {
@@ -55,7 +55,7 @@ namespace MoreSimulationSpeedOptions
             speedButton.pressedBgSprite = "ButtonMenuPressed";
             speedButton.textColor = new Color32(255, 255, 255, 255);
             speedButton.disabledTextColor = new Color32(7, 7, 7, 255);
-            speedButton.hoveredTextColor = new Color32(7, 132, 255, 255);
+            speedButton.hoveredTextColor = new Color32(255, 255, 255, 255);
             speedButton.focusedTextColor = new Color32(255, 255, 255, 255);
             speedButton.pressedTextColor = new Color32(30, 30, 44, 255);
 
@@ -73,15 +73,15 @@ namespace MoreSimulationSpeedOptions
                         Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 2);
                         break;
                     case 2:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 3);
+                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 4);
                         break;
-                    case 3:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 5);
+                    case 4:
+                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 6);
                         break;
-                    case 5:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 8);
+                    case 6:
+                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 9);
                         break;
-                    case 8:
+                    case 9:
                         Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 1);
                         break;
                 }
@@ -92,13 +92,20 @@ namespace MoreSimulationSpeedOptions
         {
             var speed = Util.GetFieldValue<int>(simulationSpeedField, SimulationManager.instance);
             speedButton.text = "x" + speed.ToString();
+            speedButton.transformPosition = speedBar.transformPosition;
+            speedButton.transform.position = speedBar.transform.position;
+
             if (speed > 3)
             {
                 speedButton.textColor = red;
+                speedButton.focusedTextColor = red;
+                speedButton.hoveredTextColor = red;
             }
             else
             {
                 speedButton.textColor = white;
+                speedButton.focusedTextColor = white;
+                speedButton.hoveredTextColor = white;
             }
         }
 
