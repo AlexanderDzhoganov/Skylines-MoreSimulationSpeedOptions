@@ -15,6 +15,12 @@ namespace MoreSimulationSpeedOptions
         private Color32 white = new Color32(255, 255, 255, 255);
         private Color32 red = new Color32(255, 0, 0, 255);
 
+        void OnDestroy()
+        {
+            speedBar.isVisible = true;
+            Destroy(speedButton.gameObject);
+        }
+
         void Awake()
         {
             simulationSpeedField = Util.FindField(SimulationManager.instance, "m_simulationSpeed");

@@ -22,13 +22,18 @@ namespace MoreSimulationSpeedOptions
     public class ModLoad : LoadingExtensionBase
     {
 
-
+        private Hook hook;
+        
         public override void OnLevelLoaded(LoadMode mode)
         {
             var uiView = GameObject.FindObjectOfType<UIView>();
-            uiView.gameObject.AddComponent<Hook>();
+            hook = uiView.gameObject.AddComponent<Hook>();
         }
 
+        public override void OnLevelUnloading()
+        {
+            GameObject.Destroy(hook);
+        }
     }
 
 }
