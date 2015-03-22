@@ -88,8 +88,14 @@ namespace MoreSimulationSpeedOptions
                         Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 9);
                         break;
                     case 9:
+                    case 99:
                         Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 1);
                         break;
+                }
+
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 99);
                 }
             };
         }
