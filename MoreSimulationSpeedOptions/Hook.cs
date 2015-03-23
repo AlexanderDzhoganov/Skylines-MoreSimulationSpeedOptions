@@ -69,28 +69,53 @@ namespace MoreSimulationSpeedOptions
             speedButton.transformPosition = speedBar.transformPosition;
 
             // Respond to button click.
-            speedButton.eventClick += (component, param) =>
+            speedButton.eventMouseDown += (component, param) =>
             {
                 var speed = Util.GetFieldValue<int>(simulationSpeedField, SimulationManager.instance);
 
-                switch (speed)
+                if ((param.buttons & UIMouseButton.Left) != 0)
                 {
-                    case 1:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 2);
-                        break;
-                    case 2:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 4);
-                        break;
-                    case 4:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 6);
-                        break;
-                    case 6:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 9);
-                        break;
-                    case 9:
-                    case 99:
-                        Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 1);
-                        break;
+                    switch (speed)
+                    {
+                        case 1:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 2);
+                            break;
+                        case 2:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 4);
+                            break;
+                        case 4:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 6);
+                            break;
+                        case 6:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 9);
+                            break;
+                        case 9:
+                        case 99:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 1);
+                            break;
+                    }
+                }
+                else if ((param.buttons & UIMouseButton.Right) != 0)
+                {
+                    switch (speed)
+                    {
+                        case 1:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 9);
+                            break;
+                        case 2:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 1);
+                            break;
+                        case 4:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 2);
+                            break;
+                        case 6:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 4);
+                            break;
+                        case 9:
+                        case 99:
+                            Util.SetFieldValue(simulationSpeedField, SimulationManager.instance, 6);
+                            break;
+                    }
                 }
 
                 if (Input.GetKey(KeyCode.LeftControl))
